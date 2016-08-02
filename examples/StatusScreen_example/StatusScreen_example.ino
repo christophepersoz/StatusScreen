@@ -72,7 +72,6 @@ uint32_t nLONG = 429496728;
 float nFLOAT1 = 55.32017814;
 float nFLOAT2 = 3.141592653589793;
 float nFLOAT3 = 2.71828182845;
-float nFLOAT4 = 1.4142135623;
 boolean nBOOL1 = true;
 boolean nBOOL2 = false;
 boolean nBOOL3 = false;
@@ -84,7 +83,7 @@ boolean nBOOL4 = true;
 
 U8GLIB _U8G(&u8g_dev_ssd1322_nhd31oled_2x_gr_hw_spi, u8g_com_hw_spi_fn); // HW SPI Com: CS = 10, A0 = 9 (Hardware Pins are  SCK = 13 and MOSI = 11)
 ClickEncoder qEnc(DT_ENC, CK_ENC, SW_ENC, 4, LOW);
-StatusScreen sScreen(&_U8G, &qEnc);
+StatusScreen sScreen(&_U8G);
 
 
 /* _____ FUNCTIONS _____ */
@@ -135,25 +134,22 @@ void setup()
         sScreen.addLong("LONG", &nLONG,"");
         sScreen.addFloat("FLOAT", &nFLOAT1," unit"); 
     sScreen.addTitle("TITLE 2");
-        sScreen.addBool("BOOLEAN", "TRUE", "FALSE", &nBOOL1);
+        sScreen.addBool("BOOLEAN TRUE/FALSE", "TRUE", "FALSE", &nBOOL1);
         sScreen.addFloat("PI", &nFLOAT2,(nBOOL1)?"~":"^"); 
         sScreen.addFloat("RANDOM", &nFLOAT1,(nBOOL2)?"~":" ^");
-        sScreen.addFloat("e", &nFLOAT3,"");
         sScreen.addBlank();
+        sScreen.addFloat("e", &nFLOAT3,"");
     sScreen.addTitle("TITLE 3");
         sScreen.addField("TEXT FIELD", DGREY);
-        sScreen.addFloat("2 SQUARE ROOT", &nFLOAT4, "");
-        sScreen.addBool("BOOLEAN", "YES", "NO", &nBOOL2);
-        sScreen.addBool("BOOLEAN", "UP", "DOWN", &nBOOL3);
-        sScreen.addBool("BOOLEAN", "OK", "ERR", &nBOOL4);
-    sScreen.addTitle("TITLE 4");
-        sScreen.addField("TEST 1", WHITE);
-        sScreen.addField("TEST 2", WHITE);
-        sScreen.addField("TEST 3", WHITE);
-    sScreen.addTitle("TITLE 5");
-        sScreen.addField("TEXT FIELD", WHITE);
         sScreen.addBlank();
-        sScreen.addField("TEXT FIELD WITH BLANK ABOVE", DGREY);
+        sScreen.addBool("BOOLEAN YES/NO", "YES", "NO", &nBOOL2);
+        sScreen.addBool("BOOLEAN UP/DOWN", "UP", "DOWN", &nBOOL3);
+        sScreen.addBool("BOOLEAN OK/ERR", "OK", "ERR", &nBOOL4);
+    sScreen.addTitle("TITLE 4");
+        sScreen.addField(VERSION, WHITE);
+        sScreen.addField(RELEASE, WHITE);
+        sScreen.addBlank();
+        sScreen.addField(AUTHOR, DGREY);
     sScreen.activatePageNav(240,58);
     
 #ifdef SER_OUT
