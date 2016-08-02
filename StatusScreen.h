@@ -35,8 +35,8 @@
 
 // ::::::: DEFINES
 
-#define NBSTATUS   25   // Number of status items
-#define NBTITLES    5   // Number of titles items
+#define NBSTATUS   22   // Number of status items
+#define NBTITLES    4   // Number of titles items
 
     // DISPLAY DETAILS
 #define WDISP   256                     // display's width
@@ -93,7 +93,7 @@ class StatusScreen {
 
 public:
 
-    StatusScreen(U8GLIB* gfx, ClickEncoder* enc);
+    StatusScreen(U8GLIB* gfx);
     
     void*       newScreen(uint8_t, uint8_t, boolean);
     void        addTitle(const char*); // section title
@@ -117,7 +117,6 @@ public:
     void        *var;
 private:
     U8GLIB*     u8g;
-    ClickEncoder* qenc;
     uint8_t     dispRow[NBROW] = { 0, 128 }; //, 172}; // Rows on display
     char*       obuf;   // Print out screen buffer (line witdh of chars)
     

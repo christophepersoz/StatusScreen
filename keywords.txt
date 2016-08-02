@@ -1,0 +1,40 @@
+###########################################
+# Syntax Coloring Map For StatusScreen.h
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+
+StatusScreen        KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+newScreen           KEYWORD2
+addTitle            KEYWORD2
+addField            KEYWORD2
+addByte             KEYWORD2
+addInt              KEYWORD2
+addLong             KEYWORD2
+addFloat            KEYWORD2
+addBool             KEYWORD2
+addBlank            KEYWORD2
+setPage             KEYWORD2
+getPage             KEYWORD2
+getMaxPage          KEYWORD2
+activatePageNav     KEYWORD2
+draw                KEYWORD2
+
+###########################################
+# Constants (LITERAL1)
+###########################################
+NBSTATUS            LITERAL1
+NBTITLES            LITERAL1
+NBROW               LITERAL1
+WDISP               LITERAL1
+HDISP               LITERAL1
+WHITE               LITERAL1
+MGREY               LITERAL1
+DGREY               LITERAL1
+BLACK               LITERAL1

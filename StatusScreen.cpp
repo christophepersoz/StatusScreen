@@ -28,9 +28,8 @@
 
 
 // ::::::: CLASS StatusScreen
-StatusScreen::StatusScreen(U8GLIB* gfx, ClickEncoder* enc) :
-    u8g(gfx),
-    qenc(enc)
+StatusScreen::StatusScreen(U8GLIB* gfx) :
+    u8g(gfx)
 {}
 
 void* StatusScreen::newScreen(uint8_t x = 0, uint8_t y = 0, boolean TTRow = true) {
