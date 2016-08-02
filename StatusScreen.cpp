@@ -5,13 +5,12 @@
 // Developed with embedXcode+
 // http://embedXcode.weebly.com
 //
-// Project 		Related to project MOCO
+// Project 		StatusScreen
 //
-// Created by 	Christophe Persoz, 20/07/2016 16:16
-// 				Christophe Persoz
+// Created on 	22/07/2016
 //
-// Copyright 	(c) Christophe Persoz, 2016
-// Licence		All Right Reserved (c)
+// Copyright 	Christophe Persoz, 2016
+// Licence		All Right Reserved (c) - GNU 3.0 Licence
 //
 // See 			StatusScreen.h and ReadMe.txt for references
 //
@@ -159,12 +158,12 @@ void StatusScreen::setPage(uint8_t cP)
     {
         sI = idxT[cPage*NBROW];
         if ((cPage*NBROW+2 >= sizeof(idxT)) || (cPage*NBROW+1 == NBTITLES))
-            eI = NBSTATUS;
+            eI = NBSTATUS-1;
         else
             eI = idxT[cPage*NBROW+2]-1;
         
     } else {
-        // todo
+        // Continuous display not yet supported
     }
 }
 
@@ -201,7 +200,7 @@ void StatusScreen::draw()
     u8g->setFontPosTop();
     
     // build display
-    for (i=sI; i<eI; i++)
+    for (i = sI; i <= eI; i++)
     {
         // Row and Line calculations
         if (curLine > nbLine && !ttNewRow)
@@ -289,8 +288,7 @@ void StatusScreen::draw()
                 PRINT(dispRow[curRow], yO, obuf, s[i].color);
                 break;
         }
-//        Serial.print("3.CurRow: "); Serial.println(curRow);
-        
+  
         (curLine <= nbLine)?curLine++:0;
     }
     if (activePageNav)

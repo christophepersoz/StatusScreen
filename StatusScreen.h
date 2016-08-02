@@ -3,16 +3,15 @@
 /// @brief		Library header
 /// @details	Display informations on sceen with a label, position and dynamic value
 /// @n
-/// @n @b		Related to project MOCO
 /// @n @a		Developed with [embedXcode+](http://embedXcode.weebly.com)
 ///
 /// @author		Christophe Persoz
 ///
-/// @date		20/07/2016 16:16
-/// @version	1.0
+/// @date		02/08/2016
+/// @version	1.1
 ///
-/// @copyright	(c) Christophe Persoz, 2016
-/// @copyright	All Right Reserved (c)
+/// @copyright	Christophe Persoz, 2016
+/// @copyright	All Right Reserved (c) - GNU 3.0 Licence
 ///
 /// @see		ReadMe.txt for references
 ///
@@ -128,15 +127,15 @@ private:
     uint8_t     idxT[NBTITLES];
     uint8_t     nT;     // Nb Titles
     
-    uint8_t     sI; // start idx for items on pages
-    uint8_t     eI; // stop idx for items on pages
+    uint8_t     sI;     // start idx for items on pages
+    uint8_t     eI;     // stop idx for items on pages
     uint8_t     encV;
     boolean     activePageNav;
     
     void        drawPageNav(); // Show current page on pages
     
 protected:
-    uint8_t     xO;         // origin for the title
+    uint8_t     xO;     // origin for the title
     uint8_t     yO;
     uint8_t     xN;
     uint8_t     yN;
