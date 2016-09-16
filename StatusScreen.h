@@ -110,7 +110,7 @@ public:
     uint8_t     getMaxPage();      // Get the number of available pages
     void        activatePageNav(uint8_t, uint8_t);  //Activate the page index on display
     
-    void        draw(); // Draw page
+    void        draw(); // Draw pages
     
     uint8_t     idx_s;  // index status
     _item       s[NBSTATUS];
