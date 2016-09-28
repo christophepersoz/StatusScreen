@@ -132,13 +132,13 @@ void setup()
         sScreen.addByte("BYTE", &nBYTE,"");
         sScreen.addInt("INTEGER", &nINT2,"");
         sScreen.addLong("LONG", &nLONG,"");
-        sScreen.addFloat("FLOAT", &nFLOAT1," unit"); 
+        sScreen.addFloat("FLOAT", &nFLOAT1," unit", 8);
     sScreen.addTitle("TITLE 2");
         sScreen.addBool("BOOLEAN TRUE/FALSE", "TRUE", "FALSE", &nBOOL1);
-        sScreen.addFloat("PI", &nFLOAT2,(nBOOL1)?"~":"^"); 
-        sScreen.addFloat("RANDOM", &nFLOAT1,(nBOOL2)?"~":" ^");
+        sScreen.addFloat("PI", &nFLOAT2,(nBOOL1)?"~":"^", 4);
+        sScreen.addFloat("RANDOM", &nFLOAT1,(nBOOL2)?"~":" ^", 6);
         sScreen.addBlank();
-        sScreen.addFloat("e", &nFLOAT3,"");
+        sScreen.addFloat("e", &nFLOAT3,"", 4);
     sScreen.addTitle("TITLE 3");
         sScreen.addField("TEXT FIELD", DGREY);
         sScreen.addBlank();
