@@ -34,8 +34,8 @@ u8g(gfx)
 
 void* StatusScreen::newScreen(uint8_t x = 0, uint8_t y = 0, boolean TTRow = true) {
     
-    xO = (x >= 0 && x <= 255) ? x:0;
-    yO = (y >= 0 && y <= 63) ? y:0;
+    xO = (x >= 0 && x < u8g->getWidth()) ? x:0;
+    yO = (y >= 0 && y < u8g->getHeight()) ? y:0;
     idx_s = 0;
     nT = 0;
     

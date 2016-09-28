@@ -1,8 +1,9 @@
 # StatusScreen
 Allows to display graphic status pages and browse them with rotary encoder.
 
-I developped this library to run it on a Teensy 3.2 ARM board but if should be compatible with Arduino.
+I developped this library to run it on a Teensy 3.2 ARM board but it should be compatible with Arduino.
 The display I use is a OLED SSD 1322 (256x64 pixels) with grey shade, but you can change that and take advantage of all the displays supported by U8Glib.
+
 
 ![ER-OLEDM032-1W.jpg](https://github.com/christophepersoz/StatusScreen/blob/master/screenshots/ER-OLEDM032-1W.jpg)
 

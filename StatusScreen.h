@@ -35,8 +35,8 @@
 
 // ::::::: DEFINES
 
-#define NBSTATUS   22   // Number of status items
-#define NBTITLES    4   // Number of titles items
+#define NBSTATUS   24   // Number of status items
+#define NBTITLES    5   // Number of titles items
 
 // DISPLAY DETAILS
 #define WDISP   256                     // display's width
