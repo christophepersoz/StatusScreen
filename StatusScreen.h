@@ -7,8 +7,8 @@
 ///
 /// @author		Christophe Persoz
 ///
-/// @date		02/08/2016
-/// @version	1.1
+/// @date		28/09/2016
+/// @version	1.2
 ///
 /// @copyright	Christophe Persoz, 2016
 /// @copyright	All Right Reserved (c) - GNU 3.0 Licence
@@ -23,11 +23,11 @@
 
 // Core library for code-sense - IDE-based
 #if defined(TEENSYDUINO) // Teensy specific
-    #include "Arduino.h"
+#include "Arduino.h"
 #elif defined(ARDUINO) // Arduino 1.0 and 1.5 specific
-    #include "Arduino.h"
+#include "Arduino.h"
 #else // error
-    #error Platform not defined
+#error Platform not defined
 #endif // end IDE
 #include <U8g_teensy.h>
 #include <ClickEncoder.h>
@@ -38,7 +38,7 @@
 #define NBSTATUS   22   // Number of status items
 #define NBTITLES    4   // Number of titles items
 
-    // DISPLAY DETAILS
+// DISPLAY DETAILS
 #define WDISP   256                     // display's width
 #define HDISP   64                      // display's height
 #define NBROW   2                       // number of colonnes to display
@@ -48,9 +48,9 @@
 #define BLACK   0                       // Black level on OLED
 
 #define TYPEFACE u8g_font_04b_03e       // U8G Typeface used for display
-                                        //  # -> Square, $ -> Right arrow
-                                        //  & -> Left arrow, ~ -> º
-                                        //  ^ -> mm
+//  # -> Square, $ -> Right arrow
+//  & -> Left arrow, ~ -> º
+//  ^ -> mm
 
 #define FONTH   9                       // Font height
 #define FONTW   7                       // Font width
@@ -58,7 +58,7 @@
 #define OFFSETT 2                       // Offset under titles
 
 
-    // CONSTANTS
+// CONSTANTS
 #define TTITLE  0
 #define TBYTE   1
 #define TINT    2
@@ -79,20 +79,21 @@ public:
     const char* tBool;
     const char* fBool;
     const char* unit;
+    uint8_t     fprec;
     TYPE        color;
     void*       value;
 private:
     
 protected:
-
+    
 };
 
 
 // ::::::: CLASS StatusScreen
 class StatusScreen {
-
+    
 public:
-
+    
     StatusScreen(U8GLIB* gfx);
     
     void*       newScreen(uint8_t, uint8_t, boolean);
@@ -101,7 +102,7 @@ public:
     void        addByte(const char*, uint8_t*, const char*); // uint8_t value
     void        addInt(const char*, uint16_t*, const char*); // uint16_t value
     void        addLong(const char*, uint32_t*, const char*); // uint32_t value
-    void        addFloat(const char*, float*, const char*); // float value
+    void        addFloat(const char*, float_t*, const char*, uint8_t decimals); // float value
     void        addBool(const char*, const char*, const char*, boolean*); // boolean value with personnalized labels for 0:1
     void        addBlank(); // blank line
     

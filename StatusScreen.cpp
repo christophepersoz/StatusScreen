@@ -29,7 +29,7 @@
 
 // ::::::: CLASS StatusScreen
 StatusScreen::StatusScreen(U8GLIB* gfx) :
-    u8g(gfx)
+u8g(gfx)
 {}
 
 void* StatusScreen::newScreen(uint8_t x = 0, uint8_t y = 0, boolean TTRow = true) {
@@ -55,7 +55,7 @@ void StatusScreen::addTitle(const char* _label) {
         s[idx_s].label = _label;
         if (nT%NBROW == 0)
             nPage++;
- 
+        
         idxT[nT++] = idx_s++; // set the idx array for titles
     }
 }
@@ -99,12 +99,13 @@ void StatusScreen::addLong(const char* _label, uint32_t* val, const char* _unit)
     }
 }
 
-void StatusScreen::addFloat(const char* _label, float* val, const char* _unit) {
+void StatusScreen::addFloat(const char* _label, float_t* val, const char* _unit,  uint8_t _fprec=4) {
     if ( idx_s <= NBSTATUS)
     {
         s[idx_s].type = TFLOAT;
         s[idx_s].label = _label;
         s[idx_s].unit = _unit;
+        s[idx_s].fprec = _fprec;
         s[idx_s++].value = val; // store the pointer to the float passed variable
     }
 }
@@ -179,7 +180,8 @@ uint8_t StatusScreen::getMaxPage()
 void StatusScreen::draw()
 {
     uint8_t i;
-    uint8_t nbLine, curLine, curRow = 0;
+    uint8_t nbLine, curLine = 0;
+    int8_t curRow = -1;
     boolean newRow = false;
     uint8_t buf_sz = 0;
     uint8_t wd_val = 0;
@@ -202,33 +204,20 @@ void StatusScreen::draw()
     for (i = sI; i <= eI; i++)
     {
         // Row and Line calculations
-        if (curLine > nbLine && !ttNewRow)
+        if ((curLine > nbLine && !ttNewRow) || (ttNewRow && s[i].type == TTITLE))
         {
             curLine = 0;
             if (curRow < NBROW)
                 curRow++;
             else
-                curRow = 0;
+                curRow = -1;
         }
         
-        yO = (s[i].type == TTITLE)? (curLine*LSPACE) : (curLine*LSPACE+offset);
+        yO = (s[i].type == TTITLE) ? (curLine*LSPACE) : (curLine*LSPACE+offset);
         
         switch (s[i].type)
         {
             case TTITLE:
-                if (ttNewRow && newRow)
-                {
-                    if (curRow < NBROW)
-                        curRow++;
-                    else
-                        curRow = 0;
-                    
-                    curLine = 0;
-                    yO = curLine*LSPACE;
-                    newRow = !newRow;
-                }
-                newRow = !newRow;
-                
                 strcpy(obuf, " # ");
                 strcat(obuf, s[i].label);
                 
@@ -236,7 +225,7 @@ void StatusScreen::draw()
                 u8g->drawBox(dispRow[curRow], 0, (WDISP/NBROW - 14), LSPACE-1);
                 PRINT(dispRow[curRow], yO+1, obuf, BLACK);
                 break;
-            
+                
             case TBYTE:
                 strcpy(obuf,s[i].label);
                 strcat(obuf," ");
@@ -263,18 +252,17 @@ void StatusScreen::draw()
                 CONCATSTR(obuf, "%d", *(uint32_t*)s[i].value, " ", s[i].unit);
                 SPRINT(dispRow[curRow] + wd_val, yO, obuf, WHITE);
                 break;
-            
+                
             case TFLOAT:
                 strcpy(obuf,s[i].label);
                 strcat(obuf," ");
                 PRINT(dispRow[curRow], yO, obuf, DGREY);
                 wd_val = u8g->getStrWidth(obuf);
-                dtostrf(*(float*)s[i].value, 5, 4, obuf);
+                dtostrf(*(float_t*)s[i].value, 5, s[i].fprec, obuf);
                 sprintf(obuf + strlen(obuf), s[i].unit);
                 SPRINT(dispRow[curRow] + wd_val, yO, obuf, WHITE);
-                
                 break;
-            
+                
             case TBOOL:
                 strcpy(obuf,s[i].label);
                 strcat(obuf," ");
@@ -287,22 +275,12 @@ void StatusScreen::draw()
                 PRINT(dispRow[curRow], yO, obuf, s[i].color);
                 break;
         }
-  
-        (curLine <= nbLine)?curLine++:0;
+        
+        (curLine <= nbLine) ? curLine++ : curLine=0;
     }
     if (activePageNav)
         drawPageNav();
 }
-
-//
-//uint8_t StatusScreen::getStrLength(const char* s)
-//{
-//    uint8_t i = 0;
-//    while (*s++ != '\0')
-//        ++i;
-//    
-//    return i;
-//}
 
 // ::::::: CLASS _status
 
