@@ -222,7 +222,7 @@ void StatusScreen::draw()
                 strcat(obuf, s[i].label);
                 
                 u8g->setColorIndex(MGREY);
-                u8g->drawBox(dispRow[curRow], 0, (WDISP/NBROW - 14), LSPACE-1);
+                u8g->drawBox(dispRow[curRow], 0, (WDISP/NBROW - 10), LSPACE-1);
                 PRINT(dispRow[curRow], yO+1, obuf, BLACK);
                 break;
                 
@@ -258,7 +258,7 @@ void StatusScreen::draw()
                 strcat(obuf," ");
                 PRINT(dispRow[curRow], yO, obuf, DGREY);
                 wd_val = u8g->getStrWidth(obuf);
-                dtostrf(*(float_t*)s[i].value, 5, s[i].fprec, obuf);
+                dtostrf(*(float_t*)s[i].value, 4, s[i].fprec, obuf);
                 sprintf(obuf + strlen(obuf), s[i].unit);
                 SPRINT(dispRow[curRow] + wd_val, yO, obuf, WHITE);
                 break;
@@ -267,7 +267,7 @@ void StatusScreen::draw()
                 strcpy(obuf,s[i].label);
                 strcat(obuf," ");
                 PRINT(dispRow[curRow], yO, obuf, DGREY);
-                PRINT(dispRow[curRow] + (u8g->getStrWidth(obuf)), yO, (s[i].value)?s[i].tBool:s[i].fBool, WHITE);
+                PRINT(dispRow[curRow] + (u8g->getStrWidth(obuf)), yO, (*(boolean*)s[i].value)?s[i].tBool:s[i].fBool, WHITE);
                 break;
                 
             case TFIELD:
