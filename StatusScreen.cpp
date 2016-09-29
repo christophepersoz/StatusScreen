@@ -186,7 +186,6 @@ void StatusScreen::draw()
     uint8_t buf_sz = 0;
     uint8_t wd_val = 0;
     uint8_t offset = (ttNewRow)?OFFSETT:0;
-    
     nbLine = ((HDISP-xO)/(LSPACE+offset));
     
     // memealloc for line buffer, where r and c are row and col values
