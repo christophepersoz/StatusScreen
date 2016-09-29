@@ -7,7 +7,7 @@
 ///
 /// @author		Christophe Persoz
 ///
-/// @date		28/09/2016
+/// @date		29/09/2016
 /// @version	1.2
 ///
 /// @copyright	Christophe Persoz, 2016
