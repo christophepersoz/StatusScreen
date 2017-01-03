@@ -1,4 +1,4 @@
-# StatusScreen
+# StatusScreen for Teensy and Graphic displays
 Allows to display graphic status pages and browse them with rotary encoder.
 
 I developped this library to run it on a Teensy 3.2 ARM board but it should be compatible with Arduino (not tested).
